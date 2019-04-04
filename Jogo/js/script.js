@@ -21,7 +21,7 @@ let indice_personagem_andando_esquerda =1;
 let indice_personagem_andando_direita =1;
 pulo_posicao_y_jogador = posicao_y_jogador;
 
-let regua,vidas=3,reguaspace = 200;
+let regua,vidas=5,reguaspace = 200;
 let fontKidsZone, fontLuckiestGuy;
 
 let num1,num2,resultado;
@@ -62,12 +62,13 @@ function draw() {
   andar_pular();
   pular();
   for(let i=0;i<vidas;i++){
-    image(regua,reguaspace+(i*50),15,50 ,70);
+    image(regua,reguaspace+(i*50),15,50,60);
   }
 
   textFont(fontLuckiestGuy,50);
   fill(247, 236, 27);
   text("Vidas:", 40, 60);
+  fill(23, 37, 199);
   text(num1+'+'+num2+'?', 40, 110);
 
   mostrar();
@@ -147,18 +148,19 @@ function mostrar(){
       posicao_x_numeros[i] = random(150, width-50);
       posicao_y_numeros[i] = random(-450, -50);
       numeros[i] = int(random(resultado-2,resultado+2));
-      }
+    }
+    fill(247, 236, 27);    
     text(numeros[i], posicao_x_numeros[i], posicao_y_numeros[i]);
   }
 }
 
 function adicao(){
-    num1 = int(random(1,9));
-    num2 = int(random(1,9));
-    resultado = num1+num2;
-    for(let i = 0; i<4; i++) {
-      posicao_x_numeros[i] = random(150, width-50);
-      posicao_y_numeros[i] = random(-450, -50);
-      numeros[i] = int(random(resultado-2,resultado+2));
-    }
+  num1 = int(random(1,9));
+  num2 = int(random(1,9));
+  resultado = num1+num2;
+  for(let i = 0; i<4; i++) {
+    posicao_x_numeros[i] = random(150, width-50);
+    posicao_y_numeros[i] = random(-450, -50);
+    numeros[i] = int(random(resultado-2,resultado+2));
+  }
 }
