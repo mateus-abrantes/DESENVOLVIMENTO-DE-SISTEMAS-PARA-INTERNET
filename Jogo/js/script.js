@@ -24,8 +24,10 @@ pulo_posicao_y_jogador = posicao_y_jogador;
 let regua,vidas=5,reguaspace = 200;
 let fontKidsZone, fontLuckiestGuy;
 
-let num1,num2,resultado;
+let num1,num2,resultado,pontos=0;
 let posicao_x_numeros = [], posicao_y_numeros = [], numeros = [];
+let distancia_colisao=[];
+let colidiu_certo=false,colidiu_errado=false, contador_de_frames=0;
 
 function preload() {
   //Carregando vetores de animação do avatar
@@ -68,11 +70,15 @@ function draw() {
   textFont(fontLuckiestGuy,50);
   fill(247, 236, 27);
   text("Vidas:", 40, 60);
+  fill(247, 236, 27);
+  text("Pontos:"+pontos, 470, 60);
   fill(23, 37, 199);
   text(num1+'+'+num2+'?', 40, 110);
 
   mostrar();
+  colisao();
 
+  //animação do personagem
   if (parado) {
     image(personagem_parado[indice_personagem_parado],posicao_x_jogador, pulo_posicao_y_jogador, width_avatar, height_avatar);
     if (indice_personagem_parado < 15) {
@@ -141,6 +147,37 @@ function pular(){
   }
 }
 
+function colisao(){
+  //COLISAO PERSONAGEM E INIMIGO
+  for(let i = 0; i<4; i++) {
+    distancia_colisao[i] = dist(posicao_x_jogador+width_avatar/2,pulo_posicao_y_jogador+height_avatar/2,posicao_x_numeros[i],posicao_y_numeros[i]);
+    if(distancia_colisao[i]<=70){
+      if(numeros[i] ==resultado){
+      colidiu_certo = true;
+      colidiu_errado = false;
+    }else{
+      colidiu_certo = false;
+      colidiu_errado = true;
+      }
+    }
+    if(colidiu_errado){
+      colidiu_errado = false;
+      colidiu_certo = false;
+      posicao_x_numeros[i] = random(150, width-50);
+      posicao_y_numeros[i] = random(-450, -50);
+      numeros[i] = int(random(resultado-2,resultado+2));
+      vidas--;
+    }
+    if(colidiu_certo){
+      colidiu_certo = false;
+      colidiu_errado = false;
+      adicao();
+      pontos++;
+    }
+  }
+}
+
+
 function mostrar(){
   for(let i = 0; i<4; i++) {
     posicao_y_numeros[i] = posicao_y_numeros[i]+2;
@@ -149,7 +186,7 @@ function mostrar(){
       posicao_y_numeros[i] = random(-450, -50);
       numeros[i] = int(random(resultado-2,resultado+2));
     }
-    fill(247, 236, 27);    
+    fill(247, 236, 27);
     text(numeros[i], posicao_x_numeros[i], posicao_y_numeros[i]);
   }
 }
