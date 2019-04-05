@@ -42,6 +42,8 @@ function preload() {
 
   //carregando musica de fundo
   soundFormats('mp3', 'ogg');
+  son_certo = loadSound('sons/certo.mp3');
+  son_errado = loadSound('sons/errado.mp3');
   son_tema = loadSound('sons/tema.mp3');
 
   //Carregando fonts
@@ -52,6 +54,7 @@ function preload() {
 
 function setup() {
   bg = loadImage('img/full-background.png');
+  son_tema.setVolume(0.3);
   son_tema.loop();
   createCanvas(width, height);
   preload();
@@ -167,12 +170,14 @@ function colisao(){
       posicao_y_numeros[i] = random(-450, -50);
       numeros[i] = int(random(resultado-2,resultado+2));
       vidas--;
+      son_errado.play();
     }
     if(colidiu_certo){
       colidiu_certo = false;
       colidiu_errado = false;
       adicao();
       pontos++;
+      son_certo.play();
     }
   }
 }
