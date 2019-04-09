@@ -1,5 +1,5 @@
 let bg;
-let posicao_y_jogador = 475;
+let posicao_y_jogador = 457;
 let posicao_x_jogador = 42;
 let width_avatar = 100;
 let height_avatar = 170;
