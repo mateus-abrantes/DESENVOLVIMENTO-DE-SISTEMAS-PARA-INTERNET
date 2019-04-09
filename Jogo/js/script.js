@@ -1,8 +1,8 @@
 let bg;
-let posicao_y_jogador = 457;
+let posicao_y_jogador = 475;
 let posicao_x_jogador = 42;
 let width_avatar = 100;
-let height_avatar = 170;
+let height_avatar = 150;
 let width=1080;
 let height=720;
 let pulo;
@@ -22,7 +22,7 @@ let indice_personagem_andando_direita =1;
 pulo_posicao_y_jogador = posicao_y_jogador;
 
 let regua,vidas=5,reguaspace = 200;
-let fontKidsZone, fontLuckiestGuy;
+let fontLuckiestGuy;
 
 let num1,num2,resultado,pontos=0;
 let posicao_x_numeros = [], posicao_y_numeros = [], numeros = [];
@@ -32,9 +32,9 @@ let colidiu_certo=false,colidiu_errado=false, contador_de_frames=0;
 function preload() {
   //Carregando vetores de animação do avatar
   for (let i=1; i<=15; i++) {
-    personagem_parado[i]  = loadImage("img/boy_1/Idle ("+i+")-min.png");
-    personagem_andando_esquerda[i]  = loadImage("img/boy_1/Run ("+i+")-min-left.png");
-    personagem_andando_direita[i]  = loadImage("img/boy_1/Run ("+i+")-min-right.png");
+    personagem_parado[i]  = loadImage("img/girl_1/Idle ("+i+")-min.png");
+    personagem_andando_esquerda[i]  = loadImage("img/girl_1/Run ("+i+")-min-left.png");
+    personagem_andando_direita[i]  = loadImage("img/girl_1/Run ("+i+")-min-right.png");
   }
   //Vidas
   regua = loadImage("img/regua.png");
@@ -47,7 +47,6 @@ function preload() {
   son_tema = loadSound('sons/tema.mp3');
 
   //Carregando fonts
-  fontKidsZone = loadFont('fonts/Kids Zone.ttf');
   fontLuckiestGuy = loadFont('fonts/LuckiestGuy.ttf');
 
 }
@@ -71,9 +70,9 @@ function draw() {
   }
 
   textFont(fontLuckiestGuy,50);
-  fill(247, 236, 27);
+  fill(250, 255, 0);
   text("Vidas:", 40, 60);
-  fill(247, 236, 27);
+  fill(250, 255, 0);
   text("Pontos:"+pontos, 470, 60);
   fill(23, 37, 199);
   text(num1+'+'+num2+'?', 40, 110);
@@ -154,7 +153,7 @@ function colisao(){
   //COLISAO PERSONAGEM E INIMIGO
   for(let i = 0; i<4; i++) {
     distancia_colisao[i] = dist(posicao_x_jogador+width_avatar/2,pulo_posicao_y_jogador+height_avatar/2,posicao_x_numeros[i],posicao_y_numeros[i]);
-    if(distancia_colisao[i]<=70){
+    if(distancia_colisao[i]<=65){
       if(numeros[i] ==resultado){
       colidiu_certo = true;
       colidiu_errado = false;
@@ -191,7 +190,7 @@ function mostrar(){
       posicao_y_numeros[i] = random(-450, -50);
       numeros[i] = int(random(resultado-2,resultado+2));
     }
-    fill(247, 236, 27);
+    fill(240, 240, 31);
     text(numeros[i], posicao_x_numeros[i], posicao_y_numeros[i]);
   }
 }
