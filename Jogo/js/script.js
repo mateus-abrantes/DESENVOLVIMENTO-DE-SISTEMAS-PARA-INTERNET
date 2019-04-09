@@ -32,9 +32,9 @@ let colidiu_certo=false,colidiu_errado=false, contador_de_frames=0;
 function preload() {
   //Carregando vetores de animação do avatar
   for (let i=1; i<=15; i++) {
-    personagem_parado[i]  = loadImage("img/girl_1/Idle ("+i+")-min.png");
-    personagem_andando_esquerda[i]  = loadImage("img/girl_1/Run ("+i+")-min-left.png");
-    personagem_andando_direita[i]  = loadImage("img/girl_1/Run ("+i+")-min-right.png");
+    personagem_parado[i]  = loadImage("img/boy_1/Idle ("+i+")-min.png");
+    personagem_andando_esquerda[i]  = loadImage("img/boy_1/Run ("+i+")-min-left.png");
+    personagem_andando_direita[i]  = loadImage("img/boy_1/Run ("+i+")-min-right.png");
   }
   //Vidas
   regua = loadImage("img/regua.png");
