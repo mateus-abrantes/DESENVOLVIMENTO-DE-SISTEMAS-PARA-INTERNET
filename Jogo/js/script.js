@@ -25,6 +25,7 @@ let regua,vidas=5,reguaspace = 200;
 let fontLuckiestGuy;
 
 let num1,num2,resultado,pontos=0;
+let fase=0,op;
 let posicao_x_numeros = [], posicao_y_numeros = [], numeros = [];
 let distancia_colisao=[];
 let colidiu_certo=false,colidiu_errado=false, contador_de_frames=0;
@@ -56,8 +57,11 @@ function setup() {
   son_tema.setVolume(0.3);
   son_tema.loop();
   createCanvas(width, height);
-  preload();
   adicao();
+  subtracao();
+  multiplicacao();
+  divisao();
+  preload();
 }
 
 function draw() {
@@ -203,5 +207,46 @@ function adicao(){
     posicao_x_numeros[i] = random(150, width-50);
     posicao_y_numeros[i] = random(-450, -50);
     numeros[i] = int(random(resultado-2,resultado+2));
+  }
+}
+
+function subtracao(){
+  num1 = int(random(1,9));
+  num2 = int(random(1,9));
+  while(num1 < num2){
+    num1 = int(random(1,9));
+    num2 = int(random(1,9));
+  }
+  resultado = num1-num2;
+  for(let i = 0; i<4; i++) {
+    posicao_x_numeros[i] = random(150, width-50);
+    posicao_y_numeros[i] = random(-450, -50);
+    numeros[i] = int(random(resultado+1,resultado+3));
+  }
+}
+
+function multiplicacao(){
+  num1 = int(random(1,9));
+  num2 = int(random(1,9));
+  resultado = num1*num2;
+  for(let i = 0; i<4; i++) {
+    posicao_x_numeros[i] = random(150, width-50);
+    posicao_y_numeros[i] = random(-450, -50);
+    numeros[i] = int(random(resultado-2,resultado+2));
+  }
+}
+
+function divisao(){
+  num1 = int(random(1,9));
+  num2 = int(random(1,9));
+  while(num1 % num2 !=0){
+    num1 = int(random(1,9));
+    num2 = int(random(1,9));
+  }
+  resultado = num1/num2;
+  for(let i = 0; i<4; i++) {
+    posicao_x_numeros[i] = random(150, width-50);
+    posicao_y_numeros[i] = random(-450, -50);
+    numeros[i] = int(random(resultado+1,resultado+3));
   }
 }
