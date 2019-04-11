@@ -32,7 +32,7 @@ let colidiu_certo=false,colidiu_errado=false, contador_de_frames=0;
 let stop = false;
 
 //Estados
-let jogar = false, operacao = false, restart = false;
+let jogar = false, operacao = false, restart = false, ganhar = false;
 function preload() {
   //Carregando vetores de animação do avatar
   for (let i=1; i<=15; i++) {
@@ -250,27 +250,27 @@ function texto_op(){
     switch (fase) {
       case 1:
       fill(224, 224, 42);
-      text(num1+'+'+num2+'?', 40, 110);
+      text(num1+'+'+num2+'?', 40, 115);
       break;
       case 2:
       fill(224, 224, 42);
-      text(num1+'+'+num2+'?', 40, 110);
+      text(num1+'+'+num2+'?', 40, 115);
       break;
       case 3:
       fill(224, 224, 42);
-      text(num1+'+'+num2+'+'+num3+'?', 40, 110);
+      text(num1+'+'+num2+'+'+num3+'?', 40, 115);
       break;
       case 4:
       fill(224, 224, 42);
-      text(num1+'+'+num2+'+'+num3+'?', 40, 110);
+      text(num1+'+'+num2+'+'+num3+'?', 40, 115);
       break;
       case 5:
       fill(224, 224, 42);
-      text(num1+'+'+num2+'+'+num3+'+'+num4+'?', 40, 110);
+      text(num1+'+'+num2+'+'+num3+'+'+num4+'?', 40, 115);
       break;
       default:
       fill(224, 224, 42);
-      text(num1+'+'+num2+'?', 40, 110);
+      text(num1+'+'+num2+'?', 40, 115);
       break;
     }
   }
@@ -278,27 +278,27 @@ function texto_op(){
     switch (fase) {
       case 1:
       fill(23, 37, 199);
-      text(num1+'-'+num2+'?', 40, 110);
+      text(num1+'-'+num2+'?', 40, 115);
       break;
       case 2:
       fill(23, 37, 199);
-      text(num1+'-'+num2+'?', 40, 110);
+      text(num1+'-'+num2+'?', 40, 115);
       break;
       case 3:
       fill(23, 37, 199);
-      text(num1+'-'+num2+'-'+num3+'?', 40, 110);
+      text(num1+'-'+num2+'-'+num3+'?', 40, 115);
       break;
       case 4:
       fill(23, 37, 199);
-      text(num1+'-'+num2+'-'+num3+'?', 40, 110);
+      text(num1+'-'+num2+'-'+num3+'?', 40, 115);
       break;
       case 5:
       fill(23, 37, 199);
-      text(num1+'-'+num2+'-'+num3+'-'+num4+'?', 40, 110);
+      text(num1+'-'+num2+'-'+num3+'-'+num4+'?', 40, 115);
       break;
       default:
       fill(23, 37, 199);
-      text(num1+'-'+num2+'?', 40, 110);
+      text(num1+'-'+num2+'?', 40, 115);
       break;
     }
   }
@@ -306,27 +306,27 @@ function texto_op(){
     switch (fase) {
       case 1:
       fill(226, 124, 0);
-      text(num1+'x'+num2+'?', 40, 110);
+      text(num1+'x'+num2+'?', 40, 115);
       break;
       case 2:
       fill(226, 124, 0);
-      text(num1+'x'+num2+'?', 40, 110);
+      text(num1+'x'+num2+'?', 40, 115);
       break;
       case 3:
       fill(226, 124, 0);
-      text(num1+'x'+num2+'x'+num3+'?', 40, 110);
+      text(num1+'x'+num2+'x'+num3+'?', 40, 115);
       break;
       case 4:
       fill(226, 124, 0);
-      text(num1+'x'+num2+'x'+num3+'?', 40, 110);
+      text(num1+'x'+num2+'x'+num3+'?', 40, 115);
       break;
       case 5:
       fill(226, 124, 0);
-      text(num1+'x'+num2+'x'+num3+'x'+num4+'?', 40, 110);
+      text(num1+'x'+num2+'x'+num3+'x'+num4+'?', 40, 115);
       break;
       default:
       fill(226, 124, 0);
-      text(num1+'x'+num2+'?', 40, 110);
+      text(num1+'x'+num2+'?', 40, 115);
       break;
     }
   }
@@ -335,11 +335,11 @@ function texto_op(){
     switch (fase) {
       case 1:
       fill(1, 104, 4);
-      text(num1+'÷'+num2+'?', 40, 110);
+      text(num1+'÷'+num2+'?', 40, 115);
       break;
       case 2:
       fill(1, 104, 4);
-      text(num1+'÷'+num2+'?', 40, 110);
+      text(num1+'÷'+num2+'?', 40, 115);
       break;
       case 3:
       fill(1, 104, 4);
@@ -347,15 +347,15 @@ function texto_op(){
       break;
       case 4:
       fill(1, 104, 4);
-      text(num1+'÷'+num2+'÷'+num3+'?', 40, 110);
+      text(num1+'÷'+num2+'÷'+num3+'?', 40, 115);
       break;
       case 5:
       fill(1, 104, 4);
-      text(num1+'÷'+num2+'÷'+num3+'÷'+num4+'?', 40, 110);
+      text(num1+'÷'+num2+'÷'+num3+'÷'+num4+'?', 40, 115);
       break;
       default:
       fill(1, 104, 4);
-      text(num1+'÷'+num2+'?', 40, 110);
+      text(num1+'÷'+num2+'?', 40, 115);
       break;
     }
   }
@@ -363,28 +363,28 @@ function texto_op(){
     fill(1, 104, 4);
     switch (fase) {
       case 1:
-      fill(224, 224, 42);
-      text(num1+'+'+num2+'?', 40, 110);
+      fill(76, 81, 77);
+      text('('+num1+'+'+num2+')-('+num3+'+'+num4+')?', 40, 115);
       break;
       case 2:
-      fill(23, 37, 199);
-      text(num1+'-'+num2+'?', 40, 110);
+      fill(76, 81, 77);
+      text('('+num1+'+'+num2+')-('+num3+'+'+num4+')?', 40, 115);
       break;
       case 3:
-      fill(226, 124, 0);
-      text(num1+'x'+num2+'?', 40, 110);
+      fill(76, 81, 77);
+      text('('+num1+'x'+num2+')÷('+num3+'+'+num4+')?', 40, 115);
       break;
       case 4:
-      fill(1, 104, 4);
-      text(num1+'÷'+num2+'?', 40, 110);
+      fill(76, 81, 77);
+      text('('+num1+'x'+num2+')÷('+num3+'+'+num4+')?', 40, 115);
       break;
       case 5:
-      fill(224, 224, 42);
-      text(num1+'+'+num2+'?', 40, 110);
+      fill(76, 81, 77);
+      text('('+num1+'x'+num2+')÷('+num3+'+'+num4+')?', 40, 115);
       break;
       default:
-      fill(224, 224, 42);
-      text(num1+'+'+num2+'?', 40, 110);
+      fill(76, 81, 77);
+      text(num1+'+'+num2+'?', 40, 115);
       break;
     }
   }
@@ -502,6 +502,9 @@ function colisao(){
         break;
         case 4:
         divisao();
+        break;
+        case 5:
+        todos();
         break;
         default:
         adicao();
@@ -802,20 +805,20 @@ function todos(){
     num2 = int(random(1,9));
     num3 = int(random(1,9));
     num4 = int(random(1,9));
-    while ((num1+num2)<(num3+num4)) {
+    while (((num1*num2)<(num3+num4)) || ((((num1*num2)%(num3+num4))!=0)) ){
       num1 = int(random(1,9));
       num2 = int(random(1,9));
       num3 = int(random(1,9));
       num4 = int(random(1,9));
     }
-    resultado = (num1+num2)-(num3+num4);
+    resultado = (num1*num2)/(num3+num4);
     break;
     case 3:
     num1 = int(random(1,9));
     num2 = int(random(1,9));
     num3 = int(random(1,9));
     num4 = int(random(1,9));
-    while ((num1*num2)<(num3+num4)) {
+    while (((num1*num2)<(num3+num4)) || ((((num1*num2)%(num3+num4))!=0)) ){
       num1 = int(random(1,9));
       num2 = int(random(1,9));
       num3 = int(random(1,9));
@@ -828,7 +831,7 @@ function todos(){
     num2 = int(random(1,9));
     num3 = int(random(1,9));
     num4 = int(random(1,9));
-    while ((num1*num2)<(num3+num4)) {
+    while (((num1*num2)<(num3+num4)) || ((((num1*num2)%(num3+num4))!=0)) ){
       num1 = int(random(1,9));
       num2 = int(random(1,9));
       num3 = int(random(1,9));
@@ -854,7 +857,13 @@ function todos(){
     num2 = int(random(1,9));
     num3 = int(random(1,9));
     num4 = int(random(1,9));
-    resultado = num1+num2;
+    while ((num1+num2)<(num3+num4)) {
+      num1 = int(random(1,9));
+      num2 = int(random(1,9));
+      num3 = int(random(1,9));
+      num4 = int(random(1,9));
+    }
+    resultado = (num1+num2)-(num3+num4);
     break;
   }
   for(let i = 0; i<4; i++) {
