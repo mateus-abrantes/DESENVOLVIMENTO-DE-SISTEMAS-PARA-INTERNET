@@ -32,7 +32,7 @@ let colidiu_certo=false,colidiu_errado=false, contador_de_frames=0;
 let stop = false;
 
 //Estados
-let jogar = false, operacao = false, restart = false, ganhar = false;
+let jogar = false, operacao = false, restart = false, ganhar = false,win=false;
 function preload() {
   //Carregando vetores de animação do avatar
   for (let i=1; i<=15; i++) {
@@ -50,7 +50,7 @@ function preload() {
   son_errado = loadSound('sons/errado.mp3');
   son_tema = loadSound('sons/tema.mp3');
   son_click = loadSound('sons/click.mp3');
-
+  son_win = loadSound('sons/win.mp3');
   //Carregando fonts
   fontLuckiestGuy = loadFont('fonts/LuckiestGuy.ttf');
 
@@ -135,48 +135,80 @@ function draw() {
         }
       }
     }else{
-      if(stop == false){
-        posterior();
+      if(win == false){
+        if(stop == false){
+          posterior();
+        }else{
+          son_tema.setVolume(0);
+          fill(103, 29, 135);
+          text("Reiniciar",width/2.5, height/6+100);
+          text("Mudar operação",width/2.5, height/6+200);
+          text("Sair",width/2.5, height/6+300);
+          if (mouseIsPressed){
+            //Click Reiniciar
+            if ((mouseX>=(width/2.5) && mouseX<=(width/2.5+220)) && (mouseY>=(height/6+65) && mouseY<=height/6+100)){
+              posicao_y_jogador = 475;
+              posicao_x_jogador = 42;
+              tempo_pulo=0;
+              pulo_posicao_y_jogador = posicao_y_jogador;
+              width_avatar = 100;
+              height_avatar = 150;
+              pontos = 0;
+              vidas =5;
+              fase=1;
+              stop = false;
+              switch (op) {
+                case 1:
+                adicao();
+                break;
+                case 2:
+                subtracao();
+                break;
+                case 3:
+                multiplicacao();
+                break;
+                case 4:
+                divisao();
+                break;
+                case 5:
+                todos();
+                break;
+                default:
+                adicao();
+                break;
+              }
+            }
+            //Click Mudar operação
+            if ((mouseX>=(width/2.5) && mouseX<=(width/2.5+410)) && (mouseY>=(height/6+160) && mouseY<=height/6+200)){
+              operacao = false;
+              posicao_y_jogador = 475;
+              posicao_x_jogador = 42;
+              tempo_pulo=0;
+              pulo_posicao_y_jogador = posicao_y_jogador;
+              width_avatar = 100;
+              height_avatar = 150;
+              pontos = 0;
+              vidas =5;
+              fase=1;
+              stop = false;
+              win = false;
+            }
+            //Click Sair
+            if ((mouseX>=(width/2.5) && mouseX<=(width/2.5+100)) && (mouseY>=(height/6+260) && mouseY<=height/6+300)){
+              remove();
+            }
+          }
+        }
       }else{
         son_tema.setVolume(0);
-        fill(103, 29, 135);
-        text("Reiniciar",width/2.5, height/6+100);
+        textFont(fontLuckiestGuy,100);
+        fill(66, 134, 244);
+        text("Você ganhou!!!",width/4.5, height/4);
+        textFont(fontLuckiestGuy,50);
+        fill(7, 158, 130);
         text("Mudar operação",width/2.5, height/6+200);
         text("Sair",width/2.5, height/6+300);
         if (mouseIsPressed){
-          //Click Reiniciar
-          if ((mouseX>=(width/2.5) && mouseX<=(width/2.5+220)) && (mouseY>=(height/6+65) && mouseY<=height/6+100)){
-            posicao_y_jogador = 475;
-            posicao_x_jogador = 42;
-            tempo_pulo=0;
-            pulo_posicao_y_jogador = posicao_y_jogador;
-            width_avatar = 100;
-            height_avatar = 150;
-            pontos = 0;
-            vidas =5;
-            fase=1;
-            stop = false;
-            switch (op) {
-              case 1:
-              adicao();
-              break;
-              case 2:
-              subtracao();
-              break;
-              case 3:
-              multiplicacao();
-              break;
-              case 4:
-              divisao();
-              break;
-              case 5:
-              todos();
-              break;
-              default:
-              adicao();
-              break;
-            }
-          }
           //Click Mudar operação
           if ((mouseX>=(width/2.5) && mouseX<=(width/2.5+410)) && (mouseY>=(height/6+160) && mouseY<=height/6+200)){
             operacao = false;
@@ -190,6 +222,8 @@ function draw() {
             vidas =5;
             fase=1;
             stop = false;
+            win = false;
+            son_win.setVolume(0);
           }
           //Click Sair
           if ((mouseX>=(width/2.5) && mouseX<=(width/2.5+100)) && (mouseY>=(height/6+260) && mouseY<=height/6+300)){
@@ -237,6 +271,10 @@ function mostrar_pontos(){
     break;
     case 40:
     fase = 5;
+    break;
+    case 50:
+    win = true;
+    son_win.play();
     break;
     default:
     fase=1;
