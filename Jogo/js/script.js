@@ -666,7 +666,7 @@ function colisao(){
       posicao_y_numeros[i] = random(-450, -50);
       numeros[i] = int(random(resultado-2,resultado+2));
       vidas--;
-      if(vidas==5){
+      if(vidas>0){
         stop = false;
       }else{
         stop = true;
