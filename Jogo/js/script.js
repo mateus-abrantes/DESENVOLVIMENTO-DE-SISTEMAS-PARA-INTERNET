@@ -43,6 +43,7 @@ let posicao_x_numeros = [], posicao_y_numeros = [], numeros = [];
 let distancia_colisao=[];
 let colidiu_certo=false,colidiu_errado=false, contador_de_frames=0;
 let stop = false;
+let tempo=0;
 
 //Estados
 let jogar = false, operacao = false, restart = false, ganhar = false,win=false,operacao_avatar=false;
@@ -97,7 +98,18 @@ function setup() {
   son_tema.setVolume(0);
   son_tema.loop();
 }
-
+function verifica_mouse(){
+	if(mouseIsPressed){
+		tempo++;
+	}else{
+		tempo=0;
+	}
+	if(tempo==5){
+		return true;
+	}else{
+		return false;
+	}
+}
 function draw() {
   clear();
   background(bg);
@@ -130,7 +142,7 @@ function draw() {
       text("Ana",width/5-40+630, posicao_y_jogador-50);
       image(img_Ana,width/5.5+600,posicao_y_jogador, width_avatar,height_avatar);
 
-      if (mouseIsPressed) {
+      if (verifica_mouse()) {
         if ((mouseX>=(width/5-40) && mouseX<=(width/5+110)) && (mouseY>=(posicao_y_jogador-80) && mouseY<=posicao_y_jogador-50)) {
           op_avatar =1;
           operacao_avatar = true;
@@ -163,7 +175,7 @@ function draw() {
         fill(76, 81, 77);
         text("Todas",width/2.5, height/6+400);
 
-        if (mouseIsPressed) {
+        if (verifica_mouse()) {
           //Click Adição
           if ((mouseX>=(width/2.5) && mouseX<=(width/2.5+155)) && (mouseY>=(height/6-25) && mouseY<=height/6)){
             son_click.play();
@@ -215,7 +227,7 @@ function draw() {
             text("Reiniciar",width/2.5, height/6+100);
             text("Mudar operação",width/2.5, height/6+200);
             text("Sair",width/2.5, height/6+300);
-            if (mouseIsPressed){
+            if (verifica_mouse()){
               //Click Reiniciar
               if ((mouseX>=(width/2.5) && mouseX<=(width/2.5+220)) && (mouseY>=(height/6+65) && mouseY<=height/6+100)){
                 posicao_y_jogador = 475;
@@ -279,7 +291,7 @@ function draw() {
           fill(7, 158, 130);
           text("Mudar operação",width/2.5, height/6+200);
           text("Sair",width/2.5, height/6+300);
-          if (mouseIsPressed){
+          if (verifica_mouse()){
             //Click Mudar operação
             if ((mouseX>=(width/2.5) && mouseX<=(width/2.5+410)) && (mouseY>=(height/6+160) && mouseY<=height/6+200)){
               operacao = false;
