@@ -12,12 +12,12 @@
       <div class="col-sm mt-5">
       </div>
       <div class="col-sm mt-4 jumbotron">
-        <form class="form">
+        <form action="logar.php" method="get">
           <h1 class="h3 mb-3 font-weight-normal">Login</h1>
-          <label for="usuario" class="sr-only">Usuario</label>
-          <input type="text" id="usuario" class="form-control" placeholder="Usuario" required="" autofocus="">
+          <label for="email" class="sr-only">Email</label>
+          <input type="email" id="email" name="email" class="form-control" placeholder="Email" required="" autofocus="">
           <label for="senha" class="sr-only">Senha</label>
-          <input type="password" id="senha" class="form-control" placeholder="Senha" required="">
+          <input type="password" id="senha" name="senha" class="form-control" placeholder="Senha" required="">
           <button class="btn btn-lg btn-primary btn-block mt-3" type="submit">Logar</button>
           <p class="mt-5 mb-3 text-muted">© 2019</p>
         </form>
