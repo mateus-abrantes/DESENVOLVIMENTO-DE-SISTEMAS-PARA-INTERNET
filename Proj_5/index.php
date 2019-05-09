@@ -19,11 +19,8 @@
           <li class="nav-item active">
             <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="login.php">Login</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="cadastro.php">Cadastro</a>
+          <li class='nav-item'>
+            <a class='nav-link' href='cadastro.php'>Cadastro</a>
           </li>
           <?php
           session_start();
@@ -37,6 +34,9 @@
                     <button type='submit' class='btn btn-primary' name='sair' value ='TRUE'>Sair</button>
                 </form>";
           }else{
+            echo "<li class='nav-item'>
+                    <a class='nav-link' href='login.php'>Login</a>
+                  </li>";
             unset ($_SESSION['login']);
             unset ($_SESSION['senha']);
         }

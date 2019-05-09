@@ -9,22 +9,39 @@
 <body>
   <body>
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-      <a class="navbar-brand" href="#">Navbar</a>
+      <a class="navbar-brand" href="index.php">Navbar</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
 
       <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="index.php">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="login.php">Login</a>
-          </li>
           <li class="nav-item active">
-            <a class="nav-link" href="cadastro.php">Cadastro  <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
           </li>
+          <li class='nav-item'>
+            <a class='nav-link' href='cadastro.php'>Cadastro</a>
+          </li>
+          <?php
+          session_start();
+          if((isset ($_SESSION['login'])) && (isset ($_SESSION['senha'])))
+          {
+            $logado = $_SESSION['login'];
+            echo "<li class='nav-item active'>
+                    <a class='nav-link' href='#'>$logado</a>
+                  </li>
+                <form action='logout.php' method='POST'>
+                    <button type='submit' class='btn btn-primary' name='sair' value ='TRUE'>Sair</button>
+                </form>";
+          }else{
+            echo "<li class='nav-item'>
+                    <a class='nav-link' href='login.php'>Login</a>
+                  </li>";
+            unset ($_SESSION['login']);
+            unset ($_SESSION['senha']);
+        }
+          ?>
+    </td>
         </ul>
         <form class="form-inline my-2 my-lg-0">
           <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
