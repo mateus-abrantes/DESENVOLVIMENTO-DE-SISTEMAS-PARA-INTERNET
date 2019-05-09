@@ -32,7 +32,10 @@
             $logado = $_SESSION['login'];
             echo "<li class='nav-item active'>
                     <a class='nav-link' href='#'>$logado</a>
-                  </li>";
+                  </li>
+                <form action='logout.php' method='POST'>
+                    <button type='submit' class='btn btn-primary' name='sair' value ='TRUE'>Sair</button>
+                </form>";
           }else{
             unset ($_SESSION['login']);
             unset ($_SESSION['senha']);
