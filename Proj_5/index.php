@@ -25,6 +25,20 @@
           <li class="nav-item">
             <a class="nav-link" href="cadastro.php">Cadastro</a>
           </li>
+          <?php
+          session_start();
+          if((isset ($_SESSION['login'])) && (isset ($_SESSION['senha'])))
+          {
+            $logado = $_SESSION['login'];
+            echo "<li class='nav-item active'>
+                    <a class='nav-link' href='#'>$logado</a>
+                  </li>";
+          }else{
+            unset ($_SESSION['login']);
+            unset ($_SESSION['senha']);
+        }
+          ?>
+    </td>
         </ul>
         <form class="form-inline my-2 my-lg-0">
           <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">

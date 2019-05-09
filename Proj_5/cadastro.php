@@ -38,7 +38,7 @@
         <div class="col-sm">
         </div>
         <div class="col-sm mt-5 jumbotron">
-          <form action="cadastrar.php" method="get">
+          <form action="cadastrar.php" method="POST">
             <div class="form-group">
               <label for="email">Email</label>
               <input type="email" class="form-control" id="email" name="email" placeholder="Seu email" required>

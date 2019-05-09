@@ -1,33 +1,33 @@
-<html>
-<body>
-Tome cuidado, agora sei seu e-mail: <?php echo $_GET["email"]; ?>
-  <?php
-  $servername = "localhost";
-  $username = "root";
-  $password = "";
-  $dbname = "teste";
+<?php
+session_start();
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "site";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password,$dbname);
 
 // Check connection
 if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-echo "<br>Sistema conectado ao sgbd";
-  $email = $_GET["email"];
-  $senha = sha1($_GET["senha"]);
-
-  $sql = "SELECT EMAIL,SENHA FROM CLIENTES WHERE EMAIL='$email' AND SENHA='$senha';";
-if ($conn->query($sql) === TRUE) {
-    echo "<script>alert('Cliente encontrado!')</script>";
-} else {
-    echo "Error: " . $sql . "<br>" . $conn->error;
+  die("Connection failed: " . $conn->connect_error);
 }
 
-$conn->close();
-
-  ?>
-
-</body>
-</html>
+  $login = $_POST['email'];
+  $entrar = $_POST['logar'];
+  $senha = md5($_POST['senha']);
+    if (isset($entrar)) {
+      $verifica = $conn->query("SELECT * FROM USUARIOS WHERE email = '$login' AND SENHA = '$senha'") or die("erro ao selecionar");
+      //$row_cnt = $verifica->num_rows
+        if (($verifica->num_rows)<=0){
+          echo"<script language='javascript' type='text/javascript'>alert('Login e/ou senha incorretos');window.location.href='login.php';</script>";
+          unset ($_SESSION['login']);
+          unset ($_SESSION['senha']);
+          die();
+        }else{
+          $_SESSION['login'] = $login;
+          $_SESSION['senha'] = $senha;
+          header('location:index.php');
+        }
+    }
+?>
